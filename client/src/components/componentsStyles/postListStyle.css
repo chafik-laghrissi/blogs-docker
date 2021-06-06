@@ -1,0 +1,8 @@
+.PostContainer{
+    display: flex;
+    flex-direction: column;
+    
+}
+.post-title{
+    text-align: center;
+}

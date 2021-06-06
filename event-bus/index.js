@@ -8,9 +8,9 @@ app.post("/events", async (req, res) => {
   const event = req.body;
   events.push(event);
   const response1=await axios.post("http://posts-clusterip-srv:4000/events", event);
-  // const response2=await axios.post("http://localhost:4001/events", event);
-  // const response3=await axios.post("http://localhost:4002/events", event);
-  // const response4=await axios.post("http://localhost:4003/events", event);
+  const response2=await axios.post("http://comments-srv:4001/events", event);
+  const response3=await axios.post("http://moderation-srv:4003/events", event);
+  const response4=await axios.post("http://query-srv:4002/events", event);
   console.log(1,response1.status);
   console.log(2,response2.status);
   console.log(3,response3.status);
@@ -22,4 +22,5 @@ app.get("/events", (req, res) => {
 });
 app.listen(4005, () => {
   console.log("Server is running on port 4005");
+  console.log("test !");
 });

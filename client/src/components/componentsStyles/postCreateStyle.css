@@ -1,0 +1,22 @@
+.creator-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15vh;
+}
+.createPostForm {
+  border-width: 1px;
+  width: 26vw;
+  border-style: solid;
+  padding: 1vh 0.5vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15px;
+}
+.title-input {
+  width: 25vw;
+}
+.submit-btn {
+  width: 15vw;
+  margin-top: 2vh !important;
+}

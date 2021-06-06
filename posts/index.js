@@ -7,24 +7,22 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const posts = {};
-app
-  .route("/posts")
-  .get((req, res) => {
-    res.status(200).json(posts);
-  })
-  .post(async (req, res) => {
-    const { title } = req.body;
-    const id = v4();
-    posts[id] = { id, title };
-    await axios.post("http://event-bus-srv:4005/events", {
-      type: "postCreated",
-      data: {
-        id,
-        title,
-      },
-    });
-    res.status(201).json(posts[id]);
+app.get("/posts", (req, res) => {
+  res.status(200).json(posts);
+});
+app.post("/posts/create", async (req, res) => {
+  const { title } = req.body;
+  const id = v4();
+  posts[id] = { id, title };
+  await axios.post("http://event-bus-srv:4005/events", {
+    type: "postCreated",
+    data: {
+      id,
+      title,
+    },
   });
+  res.status(201).json(posts[id]);
+});
 app.post("/events", (req, res) => {
   console.log("Event received:", req.body.type);
   res.json({});
